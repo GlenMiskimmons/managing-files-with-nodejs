@@ -4,4 +4,11 @@ const stream = createReadStream('./data/app.log', {
   highWaterMark: 9550,
   encoding: 'utf-8' });
 
-stream.on('data', data => console.log(data));
+stream.on('data', data => {
+  stream.pause();
+  console.log(data);
+
+  setTimeout(() => {
+    stream.resume();
+  }, 2000)
+});
